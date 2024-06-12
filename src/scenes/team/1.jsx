@@ -1,5 +1,5 @@
-import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
+import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import EditIcon from "@mui/icons-material/Edit";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Box, Button, IconButton, Tooltip, useTheme } from "@mui/material";
@@ -8,9 +8,9 @@ import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 import { mockDataContacts } from "../../data/mockData";
 import { tokens } from "../../theme";
-
 const Contacts = () => {
   const theme = useTheme();
+  const MAX_EMAIL_LENGTH = 10;
   const colors = tokens(theme.palette.mode);
 
   const handleViewClick = (id, role) => {
@@ -25,41 +25,49 @@ const Contacts = () => {
     console.log(`Delete clicked for ${role} with id:`, id);
   };
 
-  const renderNameCell = (params) => (
-    <Box>
-      <div>{params.row.name}</div>
-      <div>{params.row.email}</div>
-    </Box>
-  );
-
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5 },
+
     {
       field: "name",
       headerName: "Name",
-      flex: 1.5,
-      renderCell: renderNameCell,
+      flex: 1,
+      cellClassName: "name-column--cell",
+      renderCell: (params) => (
+        <Tooltip title={params.row.name}>
+          <div>{params.row.name}</div>
+        </Tooltip>
+      ),
     },
     {
       field: "age",
       headerName: "Role",
-      flex: 2,
+      flex: 1,
     },
     {
       field: "phone",
       headerName: "Date of Registration",
       flex: 1,
     },
+
     {
-      field: "",
-      headerName: "Last Login Date",
-      flex: 1,
+      field: "email",
+      headerName: "Email",
+      renderCell: (params) => (
+        <Tooltip title={params.row.email}>
+          <div>
+            {params.row.email.length > MAX_EMAIL_LENGTH
+              ? `${params.row.email.slice(0, MAX_EMAIL_LENGTH)}...`
+              : params.row.email}
+          </div>
+        </Tooltip>
+      ),
     },
 
     {
       field: "Actions",
       headerName: "Actions",
-      flex: 1,
+      flex: 1.5,
       renderCell: (params) => (
         <Box>
           <Tooltip title="View">
@@ -113,7 +121,7 @@ const Contacts = () => {
             padding: "10px 20px",
           }}
         >
-          <AddIcon sx={{ marginRight: "5px" }}></AddIcon>
+          <DownloadOutlinedIcon sx={{ mr: "10px" }} />
           Add New User
         </Button>
       </Box>
@@ -133,16 +141,12 @@ const Contacts = () => {
             borderTop: "none",
             backgroundColor: colors.grey[900],
           },
-          "& .MuiDataGrid-row": {
-            marginBottom: "10px",
-          },
         }}
       >
         <DataGrid
           rows={mockDataContacts}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
-          rowHeight={70}
         />
       </Box>
     </Box>
