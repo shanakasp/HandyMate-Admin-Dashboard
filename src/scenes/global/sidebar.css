@@ -1,0 +1,27 @@
+.sidebar-container {
+  transition: width 0.3s ease;
+}
+
+.sidebar-container.collapsed {
+  width: 80px;
+}
+
+.pro-sidebar-inner {
+  background: #f0f0f0 !important;
+}
+
+.pro-icon-wrapper {
+  background-color: transparent !important;
+}
+
+.pro-inner-item {
+  padding: 5px 35px 5px 20px !important;
+}
+
+.pro-inner-item:hover {
+  color: #868dfb !important;
+}
+
+.pro-menu-item.active {
+  color: #6870fa !important;
+}
