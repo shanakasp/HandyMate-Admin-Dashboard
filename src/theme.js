@@ -74,6 +74,7 @@ export const tokens = (mode) => ({
       }
     : {
         sidemenu: "#0E2F54",
+        maincolor: "#0E2F54",
         grey: {
           100: "#141414",
           200: "#292929",
