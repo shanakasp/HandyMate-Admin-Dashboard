@@ -30,6 +30,14 @@ const Item = ({
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
+  const suffixIcon = suffix
+    ? React.cloneElement(suffix, {
+        sx: {
+          color: selected === title || isHovered ? colorsidemenu : "#FFF",
+        },
+      })
+    : null;
+
   return (
     <>
       <MenuItem
@@ -55,7 +63,7 @@ const Item = ({
               })
             : null
         }
-        suffix={suffix}
+        suffix={suffixIcon}
       >
         <Typography
           sx={{
