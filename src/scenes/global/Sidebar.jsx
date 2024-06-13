@@ -1,66 +1,96 @@
 import {
-  ContactsOutlined as ContactsOutlinedIcon,
+  CheckCircleOutline as CheckCircleOutlineIcon,
+  ChevronRight as ChevronRightIcon,
+  DescriptionOutlined as DescriptionOutlinedIcon,
+  ExpandMore as ExpandMoreIcon,
   HomeOutlined as HomeOutlinedIcon,
   MenuOutlined as MenuOutlinedIcon,
+  PaymentOutlined as PaymentOutlinedIcon,
   PeopleOutlined as PeopleOutlinedIcon,
-  PersonOutlined as PersonOutlinedIcon,
-  ReceiptOutlined as ReceiptOutlinedIcon,
-  SettingsOutlined as SettingsOutlinedIcon,
+  RateReviewOutlined as RateReviewOutlinedIcon,
 } from "@mui/icons-material";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import React, { useState } from "react";
 import { Menu, MenuItem, ProSidebar } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
 import { Link } from "react-router-dom";
-
+import { tokens } from "../../theme";
 const colorsidemenutext = "#FED876";
 const colorsidemenu = "#0E2F54";
 
-const Item = ({ title, to, icon, selected, setSelected }) => {
+const Item = ({ title, to, icon, selected, setSelected, children, suffix }) => {
   const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <>
+      <MenuItem
+        active={selected === title}
+        style={{
+          position: "relative",
+          marginBottom: "30px",
+          color: selected === title || isHovered ? colorsidemenu : "#FFF",
+        }}
+        onClick={() => setSelected(title)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        icon={
+          icon
+            ? React.cloneElement(icon, {
+                sx: {
+                  color:
+                    selected === title || isHovered ? colorsidemenu : "#FFF",
+                },
+              })
+            : null
+        }
+        suffix={suffix}
+      >
+        <Typography
+          sx={{
+            fontSize: "0.9rem",
+            color: selected === title || isHovered ? colorsidemenu : "#FFF",
+          }}
+        >
+          {title}
+        </Typography>
+        <Link to={to} />
+
+        {isHovered && (
+          <Box
+            sx={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "90%",
+              borderRadius: "5px",
+              height: "100%",
+              backgroundColor: colorsidemenutext,
+              color: colorsidemenu,
+              zIndex: -1,
+            }}
+          />
+        )}
+      </MenuItem>
+      {children}
+    </>
+  );
+};
+
+const Subtopic = ({ title, to, selected, setSelected }) => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
 
   return (
     <MenuItem
       active={selected === title}
       style={{
-        position: "relative",
-        marginBottom: "30px",
-        color: selected === title || isHovered ? colorsidemenu : "#FFF",
+        color: colors.grey[100],
+        textAlign: "center",
       }}
       onClick={() => setSelected(title)}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      icon={React.cloneElement(icon, {
-        sx: {
-          color: selected === title || isHovered ? colorsidemenu : "#FFF",
-        },
-      })}
     >
-      <Typography
-        sx={{
-          fontSize: "0.9rem",
-          color: selected === title || isHovered ? colorsidemenu : "#FFF",
-        }}
-      >
-        {title}
-      </Typography>
+      <Typography>{title}</Typography>
       <Link to={to} />
-
-      {isHovered && (
-        <Box
-          sx={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "90%",
-            borderRadius: "5px",
-            height: "100%",
-            backgroundColor: colorsidemenutext,
-            color: colorsidemenu,
-            zIndex: -1,
-          }}
-        />
-      )}
     </MenuItem>
   );
 };
@@ -70,6 +100,8 @@ const Sidebar = () => {
   const location = window.location.pathname;
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState(location.replace(/^\//, ""));
+  const [isUserManagementCollapsed, setIsUserManagementCollapsed] =
+    useState(true);
 
   return (
     <Box
@@ -119,8 +151,8 @@ const Sidebar = () => {
                 >
                   <MenuOutlinedIcon />
                 </IconButton>
-                <Typography variant="h3" color="#FFF">
-                  FIXIT.LK
+                <Typography variant="h3" color="#FED876">
+                  Fixit.lk
                 </Typography>
               </Box>
             )}
@@ -137,38 +169,56 @@ const Sidebar = () => {
 
             <Item
               title="User Management"
-              to="/team"
+              to="/user-management"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
-            <Item
-              title="Contacts Information"
-              to="/contacts"
-              icon={<ContactsOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Invoices Balances"
-              to="/invoices"
-              icon={<ReceiptOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+              suffix={
+                isUserManagementCollapsed ? (
+                  <ChevronRightIcon />
+                ) : (
+                  <ExpandMoreIcon />
+                )
+              }
+              onClickCapture={() =>
+                setIsUserManagementCollapsed(!isUserManagementCollapsed)
+              }
+            >
+              {!isUserManagementCollapsed && (
+                <Subtopic
+                  title="Reported Users"
+                  to="/user-management/reported-users"
+                  selected={selected}
+                  setSelected={setSelected}
+                />
+              )}
+            </Item>
 
             <Item
-              title="Profile Form"
-              to="/form"
-              icon={<PersonOutlinedIcon />}
+              title="Tasks"
+              to="/tasks"
+              icon={<CheckCircleOutlineIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-
             <Item
-              title="Settings"
-              to="/settings"
-              icon={<SettingsOutlinedIcon />}
+              title="Quotations"
+              to="/quotations"
+              icon={<DescriptionOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Review & Ratings"
+              to="/reviews"
+              icon={<RateReviewOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Payments Management"
+              to="/payments"
+              icon={<PaymentOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -191,10 +241,10 @@ const Sidebar = () => {
                 fontWeight="bold"
                 sx={{ m: "10px 0 0 0", color: "#FFF" }}
               >
-                Ed Roh
+                Jayani Weerasinghe
               </Typography>
               <Typography variant="h5" sx={{ color: "#FFF" }}>
-                VP Fancy Admin
+                jay123@gmail.com
               </Typography>
             </Box>
           </Box>
