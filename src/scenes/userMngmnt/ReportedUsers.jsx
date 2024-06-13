@@ -129,7 +129,7 @@ const Contacts = () => {
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
-            fontSize: "14px",
+            fontSize: "12px",
           },
           "& .MuiDataGrid-columnHeaders": {
             backgroundColor: colors.primary[900],
