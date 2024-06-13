@@ -10,11 +10,11 @@ import {
   RateReviewOutlined as RateReviewOutlinedIcon,
 } from "@mui/icons-material";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import React, { useState } from "react";
 import { Menu, MenuItem, ProSidebar } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
 import { Link } from "react-router-dom";
-
 const colorsidemenutext = "#FED876";
 const colorsidemenu = "#0E2F54";
 
@@ -67,7 +67,9 @@ const Item = ({
       >
         <Typography
           sx={{
-            fontSize: "0.9rem",
+            fontSize: "0.85rem",
+            fontWeight: 600,
+
             color: selected === title || isHovered ? colorsidemenu : "#FFF",
           }}
         >
@@ -104,6 +106,7 @@ const Subtopic = ({ title, to, selected, setSelected }) => {
       active={selected === title}
       style={{
         position: "relative",
+
         marginBottom: "30px",
         color: selected === title || isHovered ? colorsidemenu : "#FFF",
         paddingLeft: "20px",
@@ -114,7 +117,8 @@ const Subtopic = ({ title, to, selected, setSelected }) => {
     >
       <Typography
         sx={{
-          fontSize: "0.9rem",
+          fontSize: "0.85rem",
+          fontWeight: 600,
           color: selected === title || isHovered ? colorsidemenu : "#FFF",
         }}
       >
@@ -149,6 +153,16 @@ const Sidebar = () => {
   const [isUserManagementCollapsed, setIsUserManagementCollapsed] =
     useState(true);
 
+  const CustomTypography = styled(Typography)(({ theme }) => ({
+    "& .white-text": {
+      color: "#FFFFFF",
+    },
+    "& .lk-text": {
+      color: "#FED876",
+      fontWeight: 700,
+    },
+  }));
+
   return (
     <Box
       sx={{
@@ -181,7 +195,7 @@ const Sidebar = () => {
             onClick={() => setIsCollapsed(!isCollapsed)}
             icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
             style={{
-              margin: "10px 0 20px 0",
+              margin: "15px 65px 20px 0",
             }}
           >
             {!isCollapsed && (
@@ -197,9 +211,10 @@ const Sidebar = () => {
                 >
                   <MenuOutlinedIcon />
                 </IconButton>
-                <Typography variant="h3" color="#FED876">
-                  Fixit.lk
-                </Typography>
+                <CustomTypography variant="h2">
+                  <span className="white-text">Fixit</span>
+                  <span className="lk-text">.lk</span>
+                </CustomTypography>
               </Box>
             )}
           </MenuItem>
@@ -215,7 +230,7 @@ const Sidebar = () => {
 
             <Item
               title="User Management"
-              to="#"
+              to="/team"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -264,7 +279,7 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
             <Item
-              title="Payments Management"
+              title="Payment Management"
               to="/payments"
               icon={<PaymentOutlinedIcon />}
               selected={selected}
