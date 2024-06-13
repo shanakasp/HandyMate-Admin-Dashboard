@@ -212,7 +212,7 @@ const Sidebar = () => {
                 >
                   <MenuOutlinedIcon />
                 </IconButton>
-                <CustomTypography variant="h2">
+                <CustomTypography variant="h1">
                   <span className="white-text">Fixit</span>
                   <span className="lk-text">.lk</span>
                 </CustomTypography>

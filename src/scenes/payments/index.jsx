@@ -2,7 +2,14 @@ import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { Box, Button, IconButton, Tooltip, useTheme } from "@mui/material";
+import {
+  Box,
+  Button,
+  IconButton,
+  Tooltip,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header";
@@ -34,25 +41,28 @@ const Contacts = () => {
 
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5 },
+    { field: "registrarId", headerName: "Transaction ID", flex: 0.5 },
     {
       field: "name",
-      headerName: "Name",
+      headerName: "User",
       flex: 1.5,
       renderCell: renderNameCell,
     },
     {
-      field: "age",
-      headerName: "Role",
+      field: "sp",
+      headerName: "Service Provider",
       flex: 2,
     },
     {
-      field: "phone",
-      headerName: "Date of Registration",
+      field: "cost",
+      headerName: "Amount",
       flex: 1,
+      renderCell: (params) => <Typography>${params.row.cost}</Typography>,
     },
+    { field: "status", headerName: "Status", flex: 2 },
     {
-      field: "",
-      headerName: "Last Login Date",
+      field: "date",
+      headerName: "Date Submitted",
       flex: 1,
     },
 
@@ -63,7 +73,7 @@ const Contacts = () => {
       renderCell: (params) => (
         <Box>
           <Tooltip title="View">
-            <Link to={`/userMngmnt/reported-users/viewUser/${params.row.id}`}>
+            <Link to={`/payments/viewPayments/${params.row.id}`}>
               <IconButton>
                 <VisibilityIcon
                   onClick={() =>
@@ -74,7 +84,7 @@ const Contacts = () => {
             </Link>
           </Tooltip>
           <Tooltip title="Edit">
-            <Link to={`/userMngmnt/reported-users/editUser/${params.row.id}`}>
+            <Link to={`/payments/editPayments/${params.row.id}`}>
               <IconButton>
                 <EditIcon
                   onClick={() =>
@@ -96,12 +106,7 @@ const Contacts = () => {
 
   return (
     <Box p={"20px"}>
-      <Header
-        title="User Management "
-        subtitle="Reported Users"
-        amount="05 users"
-      />
-
+      <Header title="Payments Management" amount="10 Payments" />
       <Box
         sx={{
           display: "flex",
@@ -113,13 +118,13 @@ const Contacts = () => {
           sx={{
             backgroundColor: colors.yellowAccent[400],
             color: colors.grey[100],
-            fontSize: "13px",
+            fontSize: "11px",
             fontWeight: "bold",
             padding: "10px 20px",
           }}
         >
           <AddIcon sx={{ marginRight: "5px" }}></AddIcon>
-          Add New reported User
+          Add New Payment
         </Button>
       </Box>
       <Box
@@ -128,7 +133,7 @@ const Contacts = () => {
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
-            fontSize: "14px",
+            fontSize: "12px",
           },
           "& .MuiDataGrid-columnHeaders": {
             backgroundColor: colors.primary[900],
@@ -139,7 +144,7 @@ const Contacts = () => {
             backgroundColor: colors.grey[900],
           },
           "& .MuiDataGrid-row": {
-            marginBottom: "10px",
+            marginBottom: "7px",
           },
         }}
       >
@@ -147,7 +152,7 @@ const Contacts = () => {
           rows={mockDataContacts}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
-          rowHeight={70}
+          rowHeight={60}
         />
       </Box>
     </Box>

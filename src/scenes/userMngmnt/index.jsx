@@ -63,7 +63,7 @@ const Contacts = () => {
       renderCell: (params) => (
         <Box>
           <Tooltip title="View">
-            <Link to={`/careers/viewcareer/${params.row.id}`}>
+            <Link to={`/usrmngmnt/viewUser/${params.row.id}`}>
               <IconButton>
                 <VisibilityIcon
                   onClick={() =>
@@ -74,7 +74,7 @@ const Contacts = () => {
             </Link>
           </Tooltip>
           <Tooltip title="Edit">
-            <Link to={`/careers/editcareer/${params.row.id}`}>
+            <Link to={`/usrmngmnt/editUser/${params.row.id}`}>
               <IconButton>
                 <EditIcon
                   onClick={() =>
@@ -108,7 +108,7 @@ const Contacts = () => {
           sx={{
             backgroundColor: colors.yellowAccent[400],
             color: colors.grey[100],
-            fontSize: "13px",
+            fontSize: "11px",
             fontWeight: "bold",
             padding: "10px 20px",
           }}
@@ -123,7 +123,7 @@ const Contacts = () => {
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
-            fontSize: "14px",
+            fontSize: "12px",
           },
           "& .MuiDataGrid-columnHeaders": {
             backgroundColor: colors.primary[900],
@@ -134,7 +134,7 @@ const Contacts = () => {
             backgroundColor: colors.grey[900],
           },
           "& .MuiDataGrid-row": {
-            marginBottom: "10px",
+            marginBottom: "7px",
           },
         }}
       >
@@ -142,7 +142,7 @@ const Contacts = () => {
           rows={mockDataContacts}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
-          rowHeight={70}
+          rowHeight={60}
         />
       </Box>
     </Box>
