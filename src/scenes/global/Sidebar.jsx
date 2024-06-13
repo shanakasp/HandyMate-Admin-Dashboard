@@ -231,7 +231,7 @@ const Sidebar = () => {
 
             <Item
               title="User Management"
-              to="/team"
+              to="/userMngmnt"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -250,7 +250,7 @@ const Sidebar = () => {
                 <Box sx={{ pl: 4 }}>
                   <Subtopic
                     title="Reported Users"
-                    to="/user-management/reported-users"
+                    to="/userMngmnt/reported-users"
                     selected={selected}
                     setSelected={setSelected}
                   />

@@ -96,7 +96,12 @@ const Contacts = () => {
 
   return (
     <Box p={"20px"}>
-      <Header title="User Management" />
+      <Header
+        title="User Management "
+        subtitle="Reported Users"
+        amount="05 users"
+      />
+
       <Box
         sx={{
           display: "flex",
@@ -114,7 +119,7 @@ const Contacts = () => {
           }}
         >
           <AddIcon sx={{ marginRight: "5px" }}></AddIcon>
-          Add New User
+          Add New reported User
         </Button>
       </Box>
       <Box
