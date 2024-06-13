@@ -2,7 +2,14 @@ import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { Box, Button, IconButton, Tooltip, useTheme } from "@mui/material";
+import {
+  Box,
+  Button,
+  IconButton,
+  Tooltip,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header";
@@ -33,28 +40,35 @@ const Contacts = () => {
   );
 
   const columns = [
-    { field: "id", headerName: "ID", flex: 0.5 },
+    { field: "registrarId", headerName: "Task ID", flex: 0.5 },
     {
       field: "name",
-      headerName: "Name",
+      headerName: "User",
       flex: 1.5,
       renderCell: renderNameCell,
     },
     {
-      field: "age",
-      headerName: "Role",
+      field: "td",
+      headerName: "Task Description",
       flex: 2,
     },
     {
-      field: "phone",
-      headerName: "Date of Registration",
-      flex: 1,
+      field: "category",
+      headerName: "Category",
+      flex: 2,
     },
     {
-      field: "date",
-      headerName: "Last Login Date",
-      flex: 1,
+      field: "sp",
+      headerName: "Service Provider",
+      flex: 2,
     },
+    {
+      field: "cost",
+      headerName: "Quotations / Price",
+      flex: 1,
+      renderCell: (params) => <Typography>${params.row.cost}</Typography>,
+    },
+    { field: "status", headerName: "Status", flex: 2 },
 
     {
       field: "Actions",
@@ -63,7 +77,7 @@ const Contacts = () => {
       renderCell: (params) => (
         <Box>
           <Tooltip title="View">
-            <Link to={`/usrmngmnt/viewUser/${params.row.id}`}>
+            <Link to={`/quotations/viewQuotations/${params.row.id}`}>
               <IconButton>
                 <VisibilityIcon
                   onClick={() =>
@@ -74,7 +88,7 @@ const Contacts = () => {
             </Link>
           </Tooltip>
           <Tooltip title="Edit">
-            <Link to={`/usrmngmnt/editUser/${params.row.id}`}>
+            <Link to={`/quotations/editQuotations/${params.row.id}`}>
               <IconButton>
                 <EditIcon
                   onClick={() =>
@@ -96,7 +110,7 @@ const Contacts = () => {
 
   return (
     <Box p={"20px"}>
-      <Header title="User Management" amount="20 Users" />
+      <Header title="Quotations Management" amount="12 Quotations" />
       <Box
         sx={{
           display: "flex",
@@ -114,7 +128,7 @@ const Contacts = () => {
           }}
         >
           <AddIcon sx={{ marginRight: "5px" }}></AddIcon>
-          Add New User
+          Add New Quotation
         </Button>
       </Box>
       <Box

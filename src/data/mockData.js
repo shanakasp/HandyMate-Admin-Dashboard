@@ -91,6 +91,8 @@ export const mockDataContacts = [
     date: "2024/04/05",
     sp: " Not Assigned",
     status: "Pending",
+    td: "Fix Leaking Faucet",
+    category: "Plumbing",
   },
   {
     id: 2,
@@ -107,6 +109,8 @@ export const mockDataContacts = [
     date: "2024/04/05",
     sp: " SP Technologies",
     status: "In Progress",
+    td: "Lawn Moving",
+    category: "Gardening",
   },
   {
     id: 3,
@@ -123,6 +127,8 @@ export const mockDataContacts = [
     date: "2024/04/05",
     sp: " Cs Pvt Ltd",
     status: "Completed",
+    td: "Interior Painting",
+    category: "Painting",
   },
   {
     id: 4,
@@ -139,6 +145,8 @@ export const mockDataContacts = [
     registrarId: 123512,
     sp: " Techno Lanka",
     status: "Pending",
+    td: "Sample Job Description",
+    category: "Sample Category",
   },
   {
     id: 5,
@@ -155,6 +163,8 @@ export const mockDataContacts = [
     registrarId: 123512,
     sp: " Techno Lanka",
     status: "Finished",
+    td: "Sample Job Description",
+    category: "Sample Category",
   },
   {
     id: 6,
@@ -171,6 +181,8 @@ export const mockDataContacts = [
     registrarId: 123512,
     sp: " Techno Lanka",
     status: "In progress",
+    td: "Sample Job Description",
+    category: "Sample Category",
   },
   {
     id: 7,
@@ -187,6 +199,8 @@ export const mockDataContacts = [
     registrarId: 123512,
     sp: " Techno Lanka",
     status: "Pending",
+    td: "Sample Job Description",
+    category: "Sample Category",
   },
   {
     id: 8,
@@ -203,6 +217,8 @@ export const mockDataContacts = [
     registrarId: 512315,
     sp: " Techno Lanka",
     status: "Pending",
+    td: "Sample Job Description",
+    category: "Sample Category",
   },
   {
     id: 9,
@@ -218,6 +234,8 @@ export const mockDataContacts = [
     sp: " Techno Lanka",
     status: "Pending",
     registrarId: 928397,
+    td: "Sample Job Description",
+    category: "Sample Category",
   },
   {
     id: 10,
@@ -233,6 +251,8 @@ export const mockDataContacts = [
     sp: " Techno Lanka",
     status: "Pending",
     registrarId: 533215,
+    td: "Sample Job Description",
+    category: "Sample Category",
   },
   {
     id: 11,
@@ -248,6 +268,8 @@ export const mockDataContacts = [
     sp: " Techno Lanka",
     status: "Pending",
     registrarId: 92197,
+    td: "Sample Job Description",
+    category: "Sample Category",
   },
 ];
 

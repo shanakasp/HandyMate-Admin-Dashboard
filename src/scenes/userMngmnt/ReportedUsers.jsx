@@ -51,7 +51,7 @@ const Contacts = () => {
       flex: 1,
     },
     {
-      field: "",
+      field: "date",
       headerName: "Last Login Date",
       flex: 1,
     },
