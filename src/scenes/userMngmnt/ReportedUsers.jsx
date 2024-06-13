@@ -33,29 +33,30 @@ const Contacts = () => {
   );
 
   const columns = [
-    { field: "id", headerName: "ID", flex: 0.5 },
+    { field: "id", headerName: "Reported ID", flex: 0.5 },
     {
       field: "name",
-      headerName: "Name",
+      headerName: "Reported User",
+      flex: 1.5,
+      renderCell: renderNameCell,
+    },
+    {
+      headerName: "Reporting User",
       flex: 1.5,
       renderCell: renderNameCell,
     },
     {
       field: "age",
-      headerName: "Role",
+      headerName: "Reason for Report",
       flex: 2,
     },
     {
-      field: "phone",
-      headerName: "Date of Registration",
-      flex: 1,
-    },
-    {
       field: "date",
-      headerName: "Last Login Date",
+      headerName: "Date",
       flex: 1,
     },
-
+    { field: "statusr", headerName: "Status", flex: 2 },
+    { field: "action", headerName: "Action Taken", flex: 2 },
     {
       field: "Actions",
       headerName: "Actions",

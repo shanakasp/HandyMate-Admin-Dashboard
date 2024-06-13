@@ -93,6 +93,8 @@ export const mockDataContacts = [
     status: "Pending",
     td: "Fix Leaking Faucet",
     category: "Plumbing",
+    statusr: "Action taken",
+    action: "Account Suspended",
   },
   {
     id: 2,
@@ -111,6 +113,8 @@ export const mockDataContacts = [
     status: "In Progress",
     td: "Lawn Moving",
     category: "Gardening",
+    statusr: "Pending",
+    action: "-",
   },
   {
     id: 3,
@@ -129,6 +133,8 @@ export const mockDataContacts = [
     status: "Completed",
     td: "Interior Painting",
     category: "Painting",
+    statusr: "Resolved",
+    action: "Warning Issued",
   },
   {
     id: 4,
@@ -147,6 +153,8 @@ export const mockDataContacts = [
     status: "Pending",
     td: "Sample Job Description",
     category: "Sample Category",
+    statusr: "Action taken",
+    action: "Account Suspended",
   },
   {
     id: 5,
@@ -165,6 +173,8 @@ export const mockDataContacts = [
     status: "Finished",
     td: "Sample Job Description",
     category: "Sample Category",
+    statusr: "Action taken",
+    action: "Account Suspended",
   },
   {
     id: 6,
@@ -183,6 +193,8 @@ export const mockDataContacts = [
     status: "In progress",
     td: "Sample Job Description",
     category: "Sample Category",
+    statusr: "Resolved",
+    action: "Warning Issued",
   },
   {
     id: 7,
@@ -201,6 +213,8 @@ export const mockDataContacts = [
     status: "Pending",
     td: "Sample Job Description",
     category: "Sample Category",
+    statusr: "Pending",
+    action: "-",
   },
   {
     id: 8,
@@ -219,6 +233,8 @@ export const mockDataContacts = [
     status: "Pending",
     td: "Sample Job Description",
     category: "Sample Category",
+    statusr: "Pending",
+    action: "-",
   },
   {
     id: 9,
@@ -236,6 +252,8 @@ export const mockDataContacts = [
     registrarId: 928397,
     td: "Sample Job Description",
     category: "Sample Category",
+    statusr: "Pending",
+    action: "-",
   },
   {
     id: 10,
@@ -253,6 +271,8 @@ export const mockDataContacts = [
     registrarId: 533215,
     td: "Sample Job Description",
     category: "Sample Category",
+    statusr: "Pending",
+    action: "-",
   },
   {
     id: 11,
@@ -270,6 +290,8 @@ export const mockDataContacts = [
     registrarId: 92197,
     td: "Sample Job Description",
     category: "Sample Category",
+    statusr: "Pending",
+    action: "-",
   },
 ];
 
