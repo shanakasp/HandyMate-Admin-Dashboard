@@ -14,11 +14,20 @@ import React, { useState } from "react";
 import { Menu, MenuItem, ProSidebar } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
 import { Link } from "react-router-dom";
-import { tokens } from "../../theme";
+
 const colorsidemenutext = "#FED876";
 const colorsidemenu = "#0E2F54";
 
-const Item = ({ title, to, icon, selected, setSelected, children, suffix }) => {
+const Item = ({
+  title,
+  to,
+  icon,
+  selected,
+  setSelected,
+  children,
+  suffix,
+  onClick,
+}) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -30,7 +39,10 @@ const Item = ({ title, to, icon, selected, setSelected, children, suffix }) => {
           marginBottom: "30px",
           color: selected === title || isHovered ? colorsidemenu : "#FFF",
         }}
-        onClick={() => setSelected(title)}
+        onClick={() => {
+          setSelected(title);
+          if (onClick) onClick();
+        }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         icon={
@@ -77,20 +89,46 @@ const Item = ({ title, to, icon, selected, setSelected, children, suffix }) => {
 };
 
 const Subtopic = ({ title, to, selected, setSelected }) => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <MenuItem
       active={selected === title}
       style={{
-        color: colors.grey[100],
-        textAlign: "center",
+        position: "relative",
+        marginBottom: "30px",
+        color: selected === title || isHovered ? colorsidemenu : "#FFF",
+        paddingLeft: "20px",
       }}
       onClick={() => setSelected(title)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <Typography>{title}</Typography>
+      <Typography
+        sx={{
+          fontSize: "0.9rem",
+          color: selected === title || isHovered ? colorsidemenu : "#FFF",
+        }}
+      >
+        {title}
+      </Typography>
       <Link to={to} />
+
+      {isHovered && (
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "90%",
+            borderRadius: "5px",
+            height: "100%",
+            backgroundColor: colorsidemenutext,
+            color: colorsidemenu,
+            zIndex: -1,
+          }}
+        />
+      )}
     </MenuItem>
   );
 };
@@ -169,7 +207,7 @@ const Sidebar = () => {
 
             <Item
               title="User Management"
-              to="/user-management"
+              to="#"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -180,17 +218,19 @@ const Sidebar = () => {
                   <ExpandMoreIcon />
                 )
               }
-              onClickCapture={() =>
+              onClick={() =>
                 setIsUserManagementCollapsed(!isUserManagementCollapsed)
               }
             >
               {!isUserManagementCollapsed && (
-                <Subtopic
-                  title="Reported Users"
-                  to="/user-management/reported-users"
-                  selected={selected}
-                  setSelected={setSelected}
-                />
+                <Box sx={{ pl: 4 }}>
+                  <Subtopic
+                    title="Reported Users"
+                    to="/user-management/reported-users"
+                    selected={selected}
+                    setSelected={setSelected}
+                  />
+                </Box>
               )}
             </Item>
 
