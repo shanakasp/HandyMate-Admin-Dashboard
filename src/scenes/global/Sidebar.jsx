@@ -1,6 +1,5 @@
 import {
   CheckCircleOutline as CheckCircleOutlineIcon,
-  ChevronRight as ChevronRightIcon,
   DescriptionOutlined as DescriptionOutlinedIcon,
   ExpandMore as ExpandMoreIcon,
   HomeOutlined as HomeOutlinedIcon,
@@ -9,6 +8,8 @@ import {
   PeopleOutlined as PeopleOutlinedIcon,
   RateReviewOutlined as RateReviewOutlinedIcon,
 } from "@mui/icons-material";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import React, { useState } from "react";
@@ -44,7 +45,7 @@ const Item = ({
         active={selected === title}
         style={{
           position: "relative",
-          marginBottom: "30px",
+          marginBottom: "25px",
           color: selected === title || isHovered ? colorsidemenu : "#FFF",
         }}
         onClick={() => {
@@ -107,7 +108,7 @@ const Subtopic = ({ title, to, selected, setSelected }) => {
       style={{
         position: "relative",
 
-        marginBottom: "30px",
+        marginBottom: "20px",
         color: selected === title || isHovered ? colorsidemenu : "#FFF",
         paddingLeft: "20px",
       }}
@@ -235,7 +236,7 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
               suffix={
-                isUserManagementCollapsed ? (
+                isCollapsed ? null : isUserManagementCollapsed ? (
                   <ChevronRightIcon />
                 ) : (
                   <ExpandMoreIcon />
@@ -245,7 +246,7 @@ const Sidebar = () => {
                 setIsUserManagementCollapsed(!isUserManagementCollapsed)
               }
             >
-              {!isUserManagementCollapsed && (
+              {!isCollapsed && !isUserManagementCollapsed && (
                 <Box sx={{ pl: 4 }}>
                   <Subtopic
                     title="Reported Users"
@@ -256,7 +257,6 @@ const Sidebar = () => {
                 </Box>
               )}
             </Item>
-
             <Item
               title="Tasks"
               to="/tasks"
@@ -288,27 +288,41 @@ const Sidebar = () => {
           </Box>
         </Menu>
         {!isCollapsed && (
-          <Box mb="25px">
-            <Box display="flex" justifyContent="center" alignItems="center">
-              <img
-                alt="profile-user"
-                width="100px"
-                height="100px"
-                src={`../../assets/user.png`}
-                style={{ cursor: "pointer", borderRadius: "50%" }}
-              />
-            </Box>
-            <Box textAlign="center">
-              <Typography
-                variant="h2"
-                fontWeight="bold"
-                sx={{ m: "10px 0 0 0", color: "#FFF" }}
-              >
-                Jayani Weerasinghe
-              </Typography>
-              <Typography variant="h5" sx={{ color: "#FFF" }}>
-                jay123@gmail.com
-              </Typography>
+          <Box sx={{ marginTop: "20%" }}>
+            <Box sx={{ borderTop: "1px solid #C3C3C3CC", m: "20px" }}>
+              <Box ml="-10px" mt="15px" display="flex" alignItems="center">
+                <Box>
+                  <img
+                    alt="profile-user"
+                    width="70px"
+                    height="70px"
+                    src={`../../assets/user.png`}
+                    style={{ cursor: "pointer", borderRadius: "50%" }}
+                  />
+                </Box>
+
+                <Box ml="10px">
+                  <Typography fontWeight="bold" sx={{ color: "#FFF" }}>
+                    User ABC Hasthiya
+                  </Typography>
+
+                  <Typography
+                    variant="h6"
+                    sx={{ color: "#C0BFBF", fontWeight: 300 }}
+                  >
+                    hasthiya@gmail.com
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    paddingLeft: "10px",
+                    cursor: "pointer",
+                    color: "#FFFFFF",
+                  }}
+                >
+                  <ExitToAppOutlinedIcon />
+                </Box>
+              </Box>
             </Box>
           </Box>
         )}
