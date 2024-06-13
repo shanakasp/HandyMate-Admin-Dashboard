@@ -60,7 +60,7 @@ const Contacts = () => {
     {
       field: "Actions",
       headerName: "Actions",
-      flex: 1,
+      flex: 1.2,
       renderCell: (params) => (
         <Box>
           <Tooltip title="View">
